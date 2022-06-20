@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- react.mins.js will give access to React Object -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react.min.js"></script>
+  <!-- react.min.dom.js give access to ReactDOM object -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react-dom.min.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script>
+    // using ES5 way
+
+    let Hello = React.createClass({
+      render: function () {
+        return React.createElement('h1', { 'className': 'h1Class' }, "Hellow using ES5 way!")
+      }
+    })
+    ReactDOM.render(React.createElement(Hello), document.getElementById('root'))
+  </script>
+</body>
+
+</html>
