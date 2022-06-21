@@ -1,14 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 const LOGIN_STATUS = {
   INIT: 'init',
   SUCCESS: 'success',
   FAILED: 'failed',
 };
+
 const Login = () => {
   const [loginStatus, setLoginStatus] = useState(LOGIN_STATUS.INIT);
   const [errorMessage, setErrorMessage] = useState('');
   const usernameRef = useRef();
   const passwordRef = useRef();
+  const navigate = useNavigate();
   useEffect(() => {
     if (loginStatus === LOGIN_STATUS.SUCCESS) {
       setErrorMessage('Success');
@@ -24,8 +28,14 @@ const Login = () => {
       passwordRef.current.value === 'admin'
     ) {
       setLoginStatus(LOGIN_STATUS.SUCCESS);
+      sessionStorage.setItem('isLoggedIn', true);
+
+      navigate('/');
     } else {
       setLoginStatus(LOGIN_STATUS.FAILED);
+      if (sessionStorage.getItem('isLoggedIn')) {
+        sessionStorage.removeItem('isLoggedIn');
+      }
     }
   };
   return (
